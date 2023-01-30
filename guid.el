@@ -1,3 +1,4 @@
+
 (defun guid-generate-random ()
   (let ((guid (make-string 16 0)))
     (dotimes (i 16)
@@ -9,7 +10,7 @@
 
     ;; final formatting
     (let ((stamped-guid (seq-reduce (lambda (x acc) (concat acc x))
-                                    (seq-map (lambda (x) (format "%2x" x)) guid)
+                                    (seq-map (lambda (x) (format "%02x" x)) guid)
                                     "")))
       (if (not (= (length stamped-guid) 32)) (error "Invalid GUID format generated"))
       (format "%s-%s-%s-%s-%s" (substring stamped-guid 0 8) (substring stamped-guid 8 12) (substring stamped-guid 12 16) (substring stamped-guid 16 20) (substring stamped-guid 20 32)))))
