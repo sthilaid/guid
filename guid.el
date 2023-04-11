@@ -23,4 +23,11 @@
     (kill-new cased-guid)
     (message (concat cased-guid " [copied to killring]"))))
 
+(defun guid-insert (&optional upcase?)
+  "generate a random guid (version 4)"
+  (interactive (list (y-or-n-p "generate upcase guid?")))
+  (let* ((guid (guid-generate-random))
+         (cased-guid (if upcase? (upcase guid) guid)))
+    (insert cased-guid)))
+
 (provide 'guid)
